@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, Clock, MapPin, CheckCircle, ShieldCheck, Activity, Phone, MessageCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, CheckCircle, ShieldCheck, Activity, Phone, MessageCircle, Mic } from 'lucide-react';
 import { BookingModal } from './components/BookingModal';
 import { ChatWidget } from './components/ChatWidget';
+import { VoiceAssistantModal } from './components/VoiceAssistantModal';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const openVoiceModal = () => setIsVoiceModalOpen(true);
+  const closeVoiceModal = () => setIsVoiceModalOpen(false);
 
   const openWhatsApp = () => {
     window.open(
@@ -143,6 +148,133 @@ export default function App() {
         </div>
       </section>
 
+      {/* AI Assistant Section */}
+      <section className="py-20 relative overflow-hidden bg-white">
+        {/* Dotted Background */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{ 
+            backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', 
+            backgroundSize: '24px 24px' 
+          }}
+        ></div>
+
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+          <motion.div 
+            {...fadeInUp}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-6 border border-blue-100">
+              <Activity className="w-4 h-4" />
+              Nueva Tecnología
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+              ¿Tienes dudas sobre el <br className="hidden md:block" /> Análisis Cuántico?
+            </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Habla directamente con nuestro <span className="font-bold text-slate-800">Asistente Virtual</span>. Experto en 
+              salud y bienestar, disponible 24/7 para responder tus preguntas al instante.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            {...fadeInUp}
+            className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 p-8 md:p-12 mb-12"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-yellow-50 rounded-lg">
+                    <Mic className="w-6 h-6 text-yellow-500" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">
+                    Pregúntale a nuestro Asistente Inteligente
+                  </h3>
+                </div>
+
+                <div className="space-y-6">
+                  <p className="text-slate-500 font-semibold">Ejemplos:</p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-500 mt-1 flex-shrink-0" />
+                      <p className="text-slate-700">
+                        Pregunta: <span className="italic text-slate-500">"¿Qué es el análisis biocuántico?"</span>
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-500 mt-1 flex-shrink-0" />
+                      <p className="text-slate-700">
+                        Pregunta: <span className="italic text-slate-500">"¿Cómo puede ayudarme a mejorar mi salud?"</span>
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-500 mt-1 flex-shrink-0" />
+                      <p className="text-slate-700 font-medium">
+                        Respuestas inmediatas y precisas por voz.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-slate-100 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+                <motion.button 
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                      "0 0 0 0px rgba(124, 99, 78, 0.4)",
+                      "0 0 0 20px rgba(124, 99, 78, 0)",
+                      "0 0 0 0px rgba(124, 99, 78, 0)"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  onClick={openVoiceModal}
+                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-[#7c634e] flex flex-col items-center justify-center text-white shadow-2xl hover:scale-105 transition-transform duration-300"
+                >
+                  <Mic className="w-12 h-12 mb-4" />
+                  <span className="text-xl font-bold tracking-wider">ACTIVAR</span>
+                  <span className="text-sm opacity-80">Asistente de Voz</span>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            {...fadeInUp}
+            className="text-center mb-12"
+          >
+            <p className="text-slate-400 text-sm font-medium">
+              Powered by LeadConnector AI & omniaflow.pro Technology
+            </p>
+          </motion.div>
+
+          <motion.div 
+            {...fadeInUp}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <button
+              onClick={openModal}
+              className="w-full sm:w-auto px-10 py-4 bg-[#0a1128] hover:bg-slate-900 text-white text-lg font-bold rounded-full shadow-xl transition-all flex items-center justify-center gap-3"
+            >
+              <Calendar className="w-5 h-5" />
+              Agendar una cita
+            </button>
+            <button
+              onClick={openWhatsApp}
+              className="w-full sm:w-auto px-10 py-4 bg-[#25d366] hover:bg-[#20ba5a] text-white text-lg font-bold rounded-full shadow-xl transition-all flex items-center justify-center gap-3"
+            >
+              <MessageCircle className="w-5 h-5" />
+              ¡Quiero agendar por WhatsApp!
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Event Details Section */}
       <section id="details" className="py-20 bg-gray-900 text-white relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
@@ -270,6 +402,9 @@ export default function App() {
       {isModalOpen && (
         <BookingModal isOpen={isModalOpen} onClose={closeModal} />
       )}
+
+      {/* Modal Overlay for Voice Assistant */}
+      <VoiceAssistantModal isOpen={isVoiceModalOpen} onClose={closeVoiceModal} />
     </div>
   );
 }

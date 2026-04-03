@@ -6,75 +6,37 @@ import { BookingModal } from './components/BookingModal';
 import { ChatWidget } from './components/ChatWidget';
 import { VoiceAssistantModal } from './components/VoiceAssistantModal';
 
-function QuantumAnalyzerCard({ className = "", generatedImage }: { className?: string; generatedImage?: string }) {
+function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string; heroImage?: string }) {
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative w-full max-w-6xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
+      className={`relative w-full max-w-4xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
     >
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0">
-        {generatedImage ? (
+      <div className="relative aspect-[9/16] md:aspect-auto md:min-h-[800px] w-full overflow-hidden">
+        {heroImage ? (
           <img 
-            src={generatedImage} 
-            alt="Quantum Bio-Electric Analyzer Background" 
-            className="w-full h-full object-cover opacity-80"
+            src={heroImage} 
+            alt="Análisis Cuántico Bío Eléctrico" 
+            className="w-full h-full object-cover md:object-contain bg-[#050c18]"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              // Fallback placeholder if the manual image hasn't been uploaded yet
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200";
+              (e.target as HTMLImageElement).className = "w-full h-full object-cover opacity-30 grayscale";
+            }}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-slate-900/50">
             <Loader2 className="w-12 h-12 animate-spin text-teal-500" />
           </div>
         )}
-        {/* Gradient Overlays to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18] via-[#050c18]/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 to-transparent"></div>
-      </div>
-
-      <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
-        {/* Left Content */}
-        <div className="lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
-          <div className="mb-6">
-            <span className="text-3xl md:text-4xl font-light text-[#c5a08e] tracking-[0.1em] uppercase">
-              NUEVO
-            </span>
-            <div className="h-[2px] w-24 bg-[#c5a08e]/30 mt-4"></div>
-          </div>
-
-          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1] mb-10 tracking-tight uppercase">
-            ANALIZADOR <br />
-            CUÁNTICO <br />
-            BÍO ELÉCTRICO
-          </h2>
-
-          <p className="text-xl md:text-2xl font-medium text-white mb-12 leading-relaxed">
-            ¡Ahora digital con oxímetro y <br className="hidden md:block" /> frecuencia de pulso!
-          </p>
-
-          {/* Promotion Card (Matching the screenshot's metallic/glass look) */}
-          <div className="relative group max-w-sm">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-transparent rounded-2xl blur-sm"></div>
-            <div className="relative bg-gradient-to-br from-gray-200/95 to-gray-300/95 backdrop-blur-xl border border-white/40 p-6 rounded-2xl shadow-2xl">
-              <p className="text-gray-800 font-bold text-[10px] uppercase tracking-[0.2em] mb-4 text-center border-b border-gray-500/20 pb-2">
-                PROMOCIÓN DE LANZAMIENTO EXCLUSIVA
-              </p>
-              <div className="text-center">
-                <p className="text-gray-900 font-black text-3xl md:text-4xl mb-1">¡50% de descuento</p>
-                <p className="text-gray-900 font-black text-2xl md:text-3xl mb-4">en tu análisis!</p>
-                <p className="text-gray-700 text-[10px] font-bold">*Aplican términos y condiciones</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Visual Area (Empty because the background image covers it) */}
-        <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-full">
-          {/* This space is intentionally left empty to show the background image's subject (device/torso) */}
-          {/* Add a subtle glow to highlight the device area */}
-          <div className="absolute inset-0 bg-teal-500/5 blur-[100px] rounded-full pointer-events-none"></div>
-        </div>
+        
+        {/* Overlay for text readability - only visible on desktop if we decide to keep text */}
+        {/* For now, we assume the image 'analizador916.png' contains the text as shown in the user's reference */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 via-transparent to-transparent pointer-events-none"></div>
       </div>
     </motion.div>
   );
@@ -83,7 +45,7 @@ function QuantumAnalyzerCard({ className = "", generatedImage }: { className?: s
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
-  const [heroImage, setHeroImage] = useState<string | undefined>(undefined);
+  const [heroImage, setHeroImage] = useState<string>('/analizador916.png');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -91,44 +53,8 @@ export default function App() {
   const openVoiceModal = () => setIsVoiceModalOpen(true);
   const closeVoiceModal = () => setIsVoiceModalOpen(false);
 
-  useEffect(() => {
-    async function generateHeroImage() {
-      try {
-        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-        const prompt = "A professional studio photograph of a compact medical device called 'VitalHealth AI Scanner'. The device has a white base and a slanted silver metallic top. On the top surface, there is a small digital display showing vertical color-coded health bars (green, yellow, red). To the right of the screen is a small red heart icon. Above the screen is a green V-shaped leaf logo. The device is sitting on a high-tech electronic circuit board base with glowing blue lines. In the background, a glowing blue holographic human torso with a visible red heart and brain. A human hand is visible on the left with a white oximeter clipped to a finger. Futuristic medical technology aesthetic, dark teal and navy blue background, 4k resolution, sharp focus.";
-        
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash-image',
-          contents: {
-            parts: [
-              {
-                text: prompt,
-              },
-            ],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "16:9"
-            }
-          }
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            const base64EncodeString = part.inlineData.data;
-            setHeroImage(`data:image/png;base64,${base64EncodeString}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating hero image:", error);
-        // Fallback to a relevant stock image if generation fails
-        setHeroImage("https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200");
-      }
-    }
-
-    generateHeroImage();
-  }, []);
+  // AI image generation removed to allow manual upload of 'analizador916.png'
+  // as requested by the user.
 
   const openWhatsApp = () => {
     window.open(
@@ -172,7 +98,7 @@ export default function App() {
           </div>
 
           <div className="relative">
-            <QuantumAnalyzerCard generatedImage={heroImage} />
+            <QuantumAnalyzerCard heroImage={heroImage} />
             
             <div className="mt-16 flex justify-center">
               <motion.button
@@ -485,7 +411,7 @@ export default function App() {
       {/* Promotion Card Section */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 max-w-5xl">
-          <QuantumAnalyzerCard generatedImage={heroImage} />
+          <QuantumAnalyzerCard heroImage={heroImage} />
         </div>
       </section>
 

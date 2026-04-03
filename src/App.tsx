@@ -7,6 +7,9 @@ import { ChatWidget } from './components/ChatWidget';
 import { VoiceAssistantModal } from './components/VoiceAssistantModal';
 
 function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string; heroImage?: string }) {
+  const [imgError, setImgError] = useState(false);
+  const fallbackUrl = "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200";
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
@@ -14,37 +17,44 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
       viewport={{ once: true }}
       className={`relative w-full max-w-4xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
     >
+      {/* SEO Headings (Hidden from view, but visible to Google) */}
+      <div className="sr-only">
+        <h2>Analizador Cuántico Bío Eléctrico</h2>
+        <h3>Nuevo Analizador Digital con Oxímetro y Frecuencia de Pulso</h3>
+        <p>Promoción de lanzamiento exclusiva: 50% de descuento en tu análisis.</p>
+      </div>
+
       {/* Background Image Layer */}
-      <div className="relative aspect-[9/16] md:aspect-auto md:min-h-[800px] w-full overflow-hidden">
-        {heroImage ? (
+      <div className="relative aspect-[9/16] md:aspect-auto md:min-h-[800px] w-full overflow-hidden flex items-center justify-center">
+        {heroImage && !imgError ? (
           <img 
             src={heroImage} 
-            alt="Análisis Cuántico Bío Eléctrico" 
+            alt="Analizador Cuántico Bío Eléctrico VitalHealth - Escáner de Inteligencia Artificial para salud" 
             className="w-full h-full object-cover md:object-contain bg-[#050c18]"
             referrerPolicy="no-referrer"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              // If relative path fails, try absolute path as a second attempt
-              if (!target.src.includes('unsplash')) {
-                if (!target.src.startsWith('/')) {
-                   target.src = '/' + heroImage;
-                   return;
-                }
-              }
-              // Final fallback placeholder if both fail
-              target.src = "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200";
-              target.className = "w-full h-full object-cover opacity-30 grayscale";
-            }}
+            onError={() => setImgError(true)}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-slate-900/50">
-            <Loader2 className="w-12 h-12 animate-spin text-teal-500" />
+          <div className="relative w-full h-full">
+            <img 
+              src={fallbackUrl} 
+              alt="Medical Tech Placeholder" 
+              className="w-full h-full object-cover opacity-30 grayscale"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+              <div className="p-6 rounded-full bg-teal-500/10 border border-teal-500/20 mb-6">
+                <Activity className="w-12 h-12 text-teal-400 animate-pulse" />
+              </div>
+              <p className="text-teal-400 font-bold text-lg mb-2">Vista Previa del Analizador</p>
+              <p className="text-slate-400 text-sm max-w-xs">
+                Sube tu archivo <code className="bg-slate-800 px-2 py-1 rounded text-teal-300">analizador916.png</code> para verlo aquí.
+              </p>
+            </div>
           </div>
         )}
         
-        {/* Overlay for text readability - only visible on desktop if we decide to keep text */}
-        {/* For now, we assume the image 'analizador916.png' contains the text as shown in the user's reference */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 via-transparent to-transparent pointer-events-none"></div>
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/60 via-transparent to-transparent pointer-events-none"></div>
       </div>
     </motion.div>
   );

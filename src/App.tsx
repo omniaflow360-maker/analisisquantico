@@ -15,33 +15,70 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative w-full max-w-4xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
+      className={`relative w-full max-w-6xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
     >
-      {/* SEO Headings (Hidden from view, but visible to Google) */}
-      <div className="sr-only">
-        <h2>Analizador Cuántico Bío Eléctrico</h2>
-        <h3>Nuevo Analizador Digital con Oxímetro y Frecuencia de Pulso</h3>
-        <p>Promoción de lanzamiento exclusiva: 50% de descuento en tu análisis.</p>
-      </div>
-
       {/* Background Image Layer */}
-      <div className="relative aspect-[9/16] md:aspect-auto md:min-h-[800px] w-full overflow-hidden flex items-center justify-center">
+      <div className="absolute inset-0 z-0">
         {heroImage && !imgError ? (
           <img 
             src={heroImage} 
-            alt="Analizador Cuántico Bío Eléctrico VitalHealth - Escáner de Inteligencia Artificial para salud" 
-            className="w-full h-full object-cover md:object-contain bg-[#050c18]"
+            alt="Analizador Cuántico Bío Eléctrico VitalHealth" 
+            className="w-full h-full object-cover object-right opacity-60 md:opacity-100"
             referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className="relative w-full h-full">
-            <img 
-              src={fallbackUrl} 
-              alt="Medical Tech Placeholder" 
-              className="w-full h-full object-cover opacity-30 grayscale"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+          <img 
+            src={fallbackUrl} 
+            alt="Medical Tech Placeholder" 
+            className="w-full h-full object-cover opacity-20 grayscale"
+          />
+        )}
+        {/* Gradient Overlays to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18] via-[#050c18]/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 to-transparent"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
+        {/* Left Content */}
+        <div className="lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+          <div className="mb-6">
+            <span className="text-3xl md:text-4xl font-light text-[#c5a08e] tracking-[0.1em] uppercase">
+              NUEVO
+            </span>
+            <div className="h-[2px] w-24 bg-[#c5a08e]/30 mt-4"></div>
+          </div>
+
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1] mb-10 tracking-tight uppercase">
+            ANALIZADOR <br />
+            CUÁNTICO <br />
+            BÍO ELÉCTRICO
+          </h2>
+
+          <p className="text-xl md:text-2xl font-medium text-white mb-12 leading-relaxed">
+            ¡Ahora digital con oxímetro y <br className="hidden md:block" /> frecuencia de pulso!
+          </p>
+
+          {/* Promotion Card */}
+          <div className="relative group max-w-sm">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-transparent rounded-2xl blur-sm"></div>
+            <div className="relative bg-gradient-to-br from-gray-100/95 to-gray-200/95 backdrop-blur-xl border border-white/40 p-6 rounded-2xl shadow-2xl">
+              <p className="text-gray-800 font-bold text-[10px] uppercase tracking-[0.2em] mb-4 text-center border-b border-gray-500/20 pb-2">
+                PROMOCIÓN DE LANZAMIENTO EXCLUSIVA
+              </p>
+              <div className="text-center">
+                <p className="text-gray-900 font-black text-3xl md:text-4xl mb-1">¡50% de descuento</p>
+                <p className="text-gray-900 font-black text-2xl md:text-3xl mb-4">en tu análisis!</p>
+                <p className="text-gray-700 text-[10px] font-bold">*Aplican términos y condiciones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Visual Area */}
+        <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-full flex items-center justify-center">
+          {!heroImage || imgError ? (
+            <div className="flex flex-col items-center text-center p-8">
               <div className="p-6 rounded-full bg-teal-500/10 border border-teal-500/20 mb-6">
                 <Activity className="w-12 h-12 text-teal-400 animate-pulse" />
               </div>
@@ -50,11 +87,9 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
                 Sube tu archivo <code className="bg-slate-800 px-2 py-1 rounded text-teal-300">analizador916.png</code> para verlo aquí.
               </p>
             </div>
-          </div>
-        )}
-        
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/60 via-transparent to-transparent pointer-events-none"></div>
+          ) : null}
+          <div className="absolute inset-0 bg-teal-500/5 blur-[100px] rounded-full pointer-events-none"></div>
+        </div>
       </div>
     </motion.div>
   );

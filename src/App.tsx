@@ -23,9 +23,17 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
             className="w-full h-full object-cover md:object-contain bg-[#050c18]"
             referrerPolicy="no-referrer"
             onError={(e) => {
-              // Fallback placeholder if the manual image hasn't been uploaded yet
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200";
-              (e.target as HTMLImageElement).className = "w-full h-full object-cover opacity-30 grayscale";
+              const target = e.target as HTMLImageElement;
+              // If relative path fails, try absolute path as a second attempt
+              if (!target.src.includes('unsplash')) {
+                if (!target.src.startsWith('/')) {
+                   target.src = '/' + heroImage;
+                   return;
+                }
+              }
+              // Final fallback placeholder if both fail
+              target.src = "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200";
+              target.className = "w-full h-full object-cover opacity-30 grayscale";
             }}
           />
         ) : (
@@ -45,7 +53,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
-  const [heroImage, setHeroImage] = useState<string>('/analizador916.png');
+  const [heroImage, setHeroImage] = useState<string>('analizador916.png');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -53,6 +61,7 @@ export default function App() {
   const openVoiceModal = () => setIsVoiceModalOpen(true);
   const closeVoiceModal = () => setIsVoiceModalOpen(false);
 
+  // VERSION: 1.0.1 - Manual Image Integration
   // AI image generation removed to allow manual upload of 'analizador916.png'
   // as requested by the user.
 

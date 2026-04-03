@@ -23,7 +23,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
           <img 
             src={heroImage} 
             alt="Analizador Cuántico Bío Eléctrico VitalHealth" 
-            className="w-full h-full object-cover object-right opacity-60 md:opacity-100"
+            className="w-full h-full object-cover object-right opacity-100"
             referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
           />
@@ -34,9 +34,9 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
             className="w-full h-full object-cover opacity-20 grayscale"
           />
         )}
-        {/* Gradient Overlays to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18] via-[#050c18]/80 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 to-transparent"></div>
+        {/* Gradient Overlays - Softened to improve image visibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18]/90 via-[#050c18]/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/20 to-transparent"></div>
       </div>
 
       <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">

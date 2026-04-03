@@ -1,19 +1,134 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Calendar, Clock, MapPin, CheckCircle, ShieldCheck, Activity, Phone, MessageCircle, Mic } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, Clock, MapPin, CheckCircle, ShieldCheck, Activity, Phone, MessageCircle, Mic, Loader2 } from 'lucide-react';
+import { GoogleGenAI } from "@google/genai";
 import { BookingModal } from './components/BookingModal';
 import { ChatWidget } from './components/ChatWidget';
 import { VoiceAssistantModal } from './components/VoiceAssistantModal';
 
+function QuantumAnalyzerCard({ className = "", generatedImage }: { className?: string; generatedImage?: string }) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className={`relative w-full max-w-6xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
+    >
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        {generatedImage ? (
+          <img 
+            src={generatedImage} 
+            alt="Quantum Bio-Electric Analyzer Background" 
+            className="w-full h-full object-cover opacity-80"
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-slate-900/50">
+            <Loader2 className="w-12 h-12 animate-spin text-teal-500" />
+          </div>
+        )}
+        {/* Gradient Overlays to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18] via-[#050c18]/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/40 to-transparent"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
+        {/* Left Content */}
+        <div className="lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+          <div className="mb-6">
+            <span className="text-3xl md:text-4xl font-light text-[#c5a08e] tracking-[0.1em] uppercase">
+              NUEVO
+            </span>
+            <div className="h-[2px] w-24 bg-[#c5a08e]/30 mt-4"></div>
+          </div>
+
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1] mb-10 tracking-tight uppercase">
+            ANALIZADOR <br />
+            CUÁNTICO <br />
+            BÍO ELÉCTRICO
+          </h2>
+
+          <p className="text-xl md:text-2xl font-medium text-white mb-12 leading-relaxed">
+            ¡Ahora digital con oxímetro y <br className="hidden md:block" /> frecuencia de pulso!
+          </p>
+
+          {/* Promotion Card (Matching the screenshot's metallic/glass look) */}
+          <div className="relative group max-w-sm">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-transparent rounded-2xl blur-sm"></div>
+            <div className="relative bg-gradient-to-br from-gray-200/95 to-gray-300/95 backdrop-blur-xl border border-white/40 p-6 rounded-2xl shadow-2xl">
+              <p className="text-gray-800 font-bold text-[10px] uppercase tracking-[0.2em] mb-4 text-center border-b border-gray-500/20 pb-2">
+                PROMOCIÓN DE LANZAMIENTO EXCLUSIVA
+              </p>
+              <div className="text-center">
+                <p className="text-gray-900 font-black text-3xl md:text-4xl mb-1">¡50% de descuento</p>
+                <p className="text-gray-900 font-black text-2xl md:text-3xl mb-4">en tu análisis!</p>
+                <p className="text-gray-700 text-[10px] font-bold">*Aplican términos y condiciones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Visual Area (Empty because the background image covers it) */}
+        <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-full">
+          {/* This space is intentionally left empty to show the background image's subject (device/torso) */}
+          {/* Add a subtle glow to highlight the device area */}
+          <div className="absolute inset-0 bg-teal-500/5 blur-[100px] rounded-full pointer-events-none"></div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
+  const [heroImage, setHeroImage] = useState<string | undefined>(undefined);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const openVoiceModal = () => setIsVoiceModalOpen(true);
   const closeVoiceModal = () => setIsVoiceModalOpen(false);
+
+  useEffect(() => {
+    async function generateHeroImage() {
+      try {
+        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const prompt = "A professional studio photograph of a compact medical device called 'VitalHealth AI Scanner'. The device has a white base and a slanted silver metallic top. On the top surface, there is a small digital display showing vertical color-coded health bars (green, yellow, red). To the right of the screen is a small red heart icon. Above the screen is a green V-shaped leaf logo. The device is sitting on a high-tech electronic circuit board base with glowing blue lines. In the background, a glowing blue holographic human torso with a visible red heart and brain. A human hand is visible on the left with a white oximeter clipped to a finger. Futuristic medical technology aesthetic, dark teal and navy blue background, 4k resolution, sharp focus.";
+        
+        const response = await ai.models.generateContent({
+          model: 'gemini-2.5-flash-image',
+          contents: {
+            parts: [
+              {
+                text: prompt,
+              },
+            ],
+          },
+          config: {
+            imageConfig: {
+              aspectRatio: "16:9"
+            }
+          }
+        });
+
+        for (const part of response.candidates[0].content.parts) {
+          if (part.inlineData) {
+            const base64EncodeString = part.inlineData.data;
+            setHeroImage(`data:image/png;base64,${base64EncodeString}`);
+            break;
+          }
+        }
+      } catch (error) {
+        console.error("Error generating hero image:", error);
+        // Fallback to a relevant stock image if generation fails
+        setHeroImage("https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&q=80&w=1200");
+      }
+    }
+
+    generateHeroImage();
+  }, []);
 
   const openWhatsApp = () => {
     window.open(
@@ -34,56 +149,43 @@ export default function App() {
       <ChatWidget />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32 min-h-[90vh] flex items-center">
+      <section className="relative overflow-hidden py-20 lg:py-32 min-h-screen flex items-center bg-[#050c18]">
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/seed/medical_device/1920/1080?blur=1" 
-            alt="Quantum Bio-Electric Analyzer" 
-            className="w-full h-full object-cover opacity-80"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920" 
+            alt="Medical Tech Background" 
+            className="w-full h-full object-cover opacity-20"
             referrerPolicy="no-referrer"
           />
-          {/* Light overlay to ensure text readability without being too dark */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-teal-50/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050c18]/80 via-transparent to-[#050c18]"></div>
         </div>
 
-        <div className="container mx-auto px-4 max-w-6xl relative z-10">
-          <motion.div 
-            {...fadeInUp}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <span className="inline-block py-1 px-3 rounded-full bg-teal-100 text-teal-800 text-sm font-semibold mb-6 tracking-wide uppercase border border-teal-200">
-              Atención Zinacantepec y Alrededores
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block py-2 px-5 rounded-xl bg-teal-500/10 text-teal-400 text-xs font-bold mb-8 tracking-[0.3em] uppercase border border-teal-500/20">
+              Atención Zinacantepec, Almoloya de Juárez, Toluca y Alrededores
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-6 leading-tight drop-shadow-sm">
-              Explora Tu Bienestar Integral Con Nuestro Innovador <span className="text-teal-600">Análisis Biocuántico</span>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-10 leading-[1.1]">
+              Tu Salud <span className="text-teal-400">Redefinida</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
-              Descubre el estado de tu salud en minutos. Un análisis rápido, no invasivo y basado en resonancia electromagnética.
-            </p>
+          </div>
+
+          <div className="relative">
+            <QuantumAnalyzerCard generatedImage={heroImage} />
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="mt-16 flex justify-center">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(40, 167, 69, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={openModal}
-                className="px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                className="px-12 py-6 bg-[#28a745] hover:bg-[#218838] text-white text-2xl font-black rounded-full shadow-2xl transition-all flex items-center gap-4"
               >
-                <Calendar className="w-5 h-5" />
-                ¡Quiero Asistir al Escáner!
+                <Calendar className="w-8 h-8" />
+                ¡Quiero Asistir al Escáner Biocuántico!
               </motion.button>
-              <a 
-                href="#details" 
-                className="px-8 py-4 bg-white/50 hover:bg-white text-gray-800 border border-gray-300 text-lg font-medium rounded-full transition-colors backdrop-blur-sm"
-              >
-                Ver Detalles
-              </a>
             </div>
-            
-            <p className="mt-4 text-xs text-gray-500 italic font-medium">
-              * Los resultados son orientativos y no sustituyen un diagnóstico médico.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -292,7 +394,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Fecha</h4>
-                    <p className="text-gray-400">Martes 10, Miércoles 11 y Jueves 12 de Marzo, 2026</p>
+                    <p className="text-gray-400">Lunes 27, Martes 28 y Miércoles 29 de Abril, 2026</p>
                   </div>
                 </div>
                 
@@ -377,6 +479,13 @@ export default function App() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Promotion Card Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <QuantumAnalyzerCard generatedImage={heroImage} />
         </div>
       </section>
 

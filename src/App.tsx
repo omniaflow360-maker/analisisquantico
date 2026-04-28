@@ -144,7 +144,7 @@ export default function App() {
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="inline-block py-2 px-5 rounded-xl bg-teal-500/10 text-teal-400 text-xs font-bold mb-8 tracking-[0.3em] uppercase border border-teal-500/20">
-              Atención Zinacantepec, Almoloya de Juárez, Toluca y Alrededores
+              Atención Toluca, Zinacantepec, Almoloya de Juárez y Alrededores
             </span>
             <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-10 leading-[1.1]">
               Tu Salud <span className="text-teal-400">Redefinida</span>
@@ -374,7 +374,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Fecha</h4>
-                    <p className="text-gray-400">Miércoles 6, Jueves 7 y Viernes 8 de Mayo, 2026</p>
+                    <p className="text-gray-400">Martes 12, Miércoles 13 y Jueves 14 de Mayo, 2026</p>
                   </div>
                 </div>
                 
@@ -394,8 +394,8 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Ubicación</h4>
-                    <p className="text-gray-400">Las Torres 123, Col. Linda Vista, Zinacantepec, Edo. Méx.</p>
-                    <p className="text-sm text-gray-500 mt-1">(Frente al DIF de Zinacantepec)</p>
+                    <p className="text-gray-400">Dirección Toluca (Detalles en Agendado)</p>
+                    <p className="text-sm text-gray-500 mt-1">(Referencia: Consultorio Toluca)</p>
                   </div>
                 </div>
 

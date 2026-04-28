@@ -1,5 +1,6 @@
 {
-  "name": "Evento Zinacantepec - Escáner Biocuántico",
+  "name": "Jornada Toluca - Escáner Biocuántico",
   "description": "Landing page para el evento de análisis biocuántico en Zinacantepec, con reserva en línea y chat de soporte.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }

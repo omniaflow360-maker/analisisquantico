@@ -9,7 +9,7 @@ interface BookingModalProps {
 export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   useEffect(() => {
     if (isOpen) {
-      const scriptSrc = "https://responde24-7.omniaflow.pro/js/form_embed.js";
+      const scriptSrc = "https://agency.omniaflow.pro/js/form_embed.js";
       if (document.querySelector(`script[src="${scriptSrc}"]`)) {
         return;
       }
@@ -29,7 +29,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
         <div className="flex items-center justify-between p-4 border-b border-gray-100">
-          <h3 className="text-lg font-semibold text-gray-900">Conoce tu estado de salud</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Agendar Cita - Jornada Toluca</h3>
           <button
             onClick={onClose}
             className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
@@ -39,10 +39,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         </div>
         <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
           <iframe 
-            src="https://responde24-7.omniaflow.pro/widget/booking/0qP6kFJwPpNP85Xr6IGS" 
+            src="https://agency.omniaflow.pro/widget/booking/WFG9NIulCy9dLEb3zefc" 
             style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }} 
             scrolling="no" 
-            id="0qP6kFJwPpNP85Xr6IGS_1771656852607"
+            id="WFG9NIulCy9dLEb3zefc_1777419409416"
             title="Booking Widget"
           ></iframe>
         </div>

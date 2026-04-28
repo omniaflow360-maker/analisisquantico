@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 
 export function ChatWidget() {
   useEffect(() => {
-    const widgetId = "699a59986e60094228983c10";
+    const widgetId = "6999564395fbc5190c8918db";
     if (document.querySelector(`script[data-widget-id="${widgetId}"]`)) {
       return;
     }
 
     const script = document.createElement('script');
-    script.src = "https://beta.leadconnectorhq.com/loader.js";
-    script.dataset.resourcesUrl = "https://beta.leadconnectorhq.com/chat-widget/loader.js";
+    script.src = "https://widgets.leadconnectorhq.com/loader.js";
+    script.dataset.resourcesUrl = "https://widgets.leadconnectorhq.com/chat-widget/loader.js";
     script.dataset.widgetId = widgetId;
     script.async = true;
     document.body.appendChild(script);

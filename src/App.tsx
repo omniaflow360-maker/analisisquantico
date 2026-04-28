@@ -374,7 +374,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Fecha</h4>
-                    <p className="text-gray-400">Lunes 27, Martes 28 y Miércoles 29 de Abril, 2026</p>
+                    <p className="text-gray-400">Miércoles 6, Jueves 7 y Viernes 8 de Mayo, 2026</p>
                   </div>
                 </div>
                 

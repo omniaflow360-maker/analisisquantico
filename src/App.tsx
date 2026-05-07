@@ -17,6 +17,13 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
       viewport={{ once: true }}
       className={`relative w-full max-w-6xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
     >
+      {/* SEO Headings - Hidden for users, visible for search engines */}
+      <div className="sr-only">
+        <h1>¿Cuándo fue la última vez que supiste cómo está tu cuerpo de verdad?</h1>
+        <h2>Escáner de salud preventivo con tecnología avanzada en Baños Tivoli</h2>
+        <p>Diagnóstico de sistemas cardiovascular, digestivo, hormonal e inmunitario.</p>
+      </div>
+
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         {heroImage && !imgError ? (
@@ -31,12 +38,12 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
           <img 
             src={fallbackUrl} 
             alt="Medical Tech Placeholder" 
-            className="w-full h-full object-cover opacity-20 grayscale"
+            className="w-full h-full object-cover opacity-10 grayscale"
           />
         )}
-        {/* Gradient Overlays - Softened to improve image visibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18]/90 via-[#050c18]/40 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/20 to-transparent"></div>
+        {/* Gradient Overlays - Ultra light to prioritize the uploaded image */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050c18]/80 via-[#050c18]/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050c18]/10 to-transparent"></div>
       </div>
 
       <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
@@ -112,7 +119,7 @@ export default function App() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/527299357028?text=Necesito%20más%20información%20sobre%20el%20Estudio%20Analisis%20BioCuántico',
+      'https://wa.me/527293824651?text=Necesito%20más%20información%20sobre%20el%20Estudio%20Analisis%20BioCuántico',
       '_blank'
     );
   };
@@ -147,7 +154,7 @@ export default function App() {
               Atención Toluca, Zinacantepec, Almoloya de Juárez y Alrededores
             </span>
             <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-10 leading-[1.1]">
-              Tu Salud <span className="text-teal-400">Redefinida</span>
+              ¿Cuándo fue la última vez que supiste <span className="text-teal-400">cómo está tu cuerpo de verdad?</span>
             </h1>
           </div>
 
@@ -374,7 +381,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Fecha</h4>
-                    <p className="text-gray-400">Martes 12, Miércoles 13 y Jueves 14 de Mayo, 2026</p>
+                    <p className="text-gray-400">Miércoles 13, Jueves 14 y Viernes 15 de Mayo, 2026</p>
                   </div>
                 </div>
                 
@@ -384,7 +391,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Horario</h4>
-                    <p className="text-gray-400">10:00 AM - 6:00 PM</p>
+                    <p className="text-gray-400">10:00 AM - 06:00 PM</p>
                   </div>
                 </div>
                 
@@ -394,8 +401,8 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Ubicación</h4>
-                    <p className="text-gray-400">Dirección Toluca (Detalles en Agendado)</p>
-                    <p className="text-sm text-gray-500 mt-1">(Referencia: Consultorio Toluca)</p>
+                    <p className="text-gray-400">BAÑOS TIVOLI — C. Plutarco González y Rafael Araujo no. 501, Barrio de la Merced, CP 50080, Toluca de Lerdo</p>
+                    <p className="text-sm text-gray-500 mt-1">(Referencia: Planta Baja)</p>
                   </div>
                 </div>
 
@@ -405,8 +412,8 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Contacto</h4>
-                    <p className="text-gray-400">Carmen Berenice Gómez Salgado</p>
-                    <p className="text-teal-400 font-mono mt-1">729 151 7400</p>
+                    <p className="text-gray-400">Atención y Soporte</p>
+                    <p className="text-teal-400 font-mono mt-1">729 382 4651</p>
                   </div>
                 </div>
               </div>

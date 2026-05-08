@@ -27,17 +27,27 @@ export function VoiceAssistantModal({ isOpen, onClose }: VoiceAssistantModalProp
           >
             <button 
               onClick={onClose}
-              className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-10"
+              className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-20"
             >
               <X className="w-6 h-6" />
             </button>
+
+            <div className="pt-12 px-8 text-center z-10">
+              <div className="inline-flex items-center justify-center p-3 bg-teal-50 rounded-2xl mb-4">
+                <Mic className="w-6 h-6 text-teal-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">Asistente de Voz Inteligente</h3>
+              <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
+                Haz clic en el icono del <span className="inline-flex items-center gap-1 font-bold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-lg border border-teal-100"><Mic className="w-3 h-3" /> micrófono</span> que aparecerá abajo y <span className="font-bold text-teal-600 underline decoration-teal-200">permite el acceso</span> en tu navegador para comenzar a hablar.
+              </p>
+            </div>
             
-            <div className="w-full flex-1 flex items-center justify-center p-0">
-              <div id="lc-widget-popup-container" className="w-full h-full min-h-[600px] flex items-center justify-center">
+            <div className="w-full flex-1 flex items-start justify-center p-0">
+              <div id="lc-widget-popup-container" className="w-full h-full min-h-[500px] flex items-center justify-center">
                 <iframe 
                   id="voice-assistant-iframe"
                   title="Voice Assistant"
-                  className="w-full h-[600px] border-none"
+                  className="w-full h-[500px] border-none"
                   srcDoc={`
                     <!DOCTYPE html>
                     <html>

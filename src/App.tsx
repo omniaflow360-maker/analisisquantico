@@ -238,18 +238,18 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
             <motion.div {...fadeInUp} className="flex flex-col items-center gap-2">
               <Users className="w-8 h-8 text-teal-200" />
-              <p className="text-4xl font-black">133+</p>
-              <p className="text-teal-100 font-medium">Pacientes atendidos en Toluca</p>
+              <p className="text-4xl font-black">364+</p>
+              <p className="text-teal-100 font-medium font-black">Personas ya lo vivieron</p>
             </motion.div>
             <motion.div {...fadeInUp} className="flex flex-col items-center gap-2">
-              <TrendingUp className="w-8 h-8 text-teal-200" />
-              <p className="text-4xl font-black">24%</p>
-              <p className="text-teal-100 font-medium">De contactos fríos agenda cita</p>
+              <Clock className="w-8 h-8 text-teal-200" />
+              <p className="text-4xl font-black">60 seg</p>
+              <p className="text-teal-100 font-medium font-black">Es todo lo que necesitas</p>
             </motion.div>
             <motion.div {...fadeInUp} className="flex flex-col items-center gap-2">
               <CheckCircle className="w-8 h-8 text-teal-200" />
-              <p className="text-4xl font-black">52</p>
-              <p className="text-teal-100 font-medium">Reportes de salud en 60 segundos</p>
+              <p className="text-4xl font-black">$350 MXN</p>
+              <p className="text-teal-100 font-medium font-black">vs $700 precio normal</p>
             </motion.div>
           </div>
         </div>

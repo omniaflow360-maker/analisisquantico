@@ -328,14 +328,14 @@ export default function App() {
                   animate={{
                     scale: [1, 1.05, 1],
                     boxShadow: [
-                      "0 0 0 0px rgba(124, 99, 78, 0.4)",
-                      "0 0 0 20px rgba(124, 99, 78, 0)",
-                      "0 0 0 0px rgba(124, 99, 78, 0)"
+                      "0 0 0 0px rgba(13, 148, 136, 0.4)",
+                      "0 0 0 20px rgba(13, 148, 136, 0)",
+                      "0 0 0 0px rgba(13, 148, 136, 0)"
                     ]
                   }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   onClick={openVoiceModal}
-                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-[#7c634e] flex flex-col items-center justify-center text-white shadow-2xl hover:scale-105 transition-transform duration-300"
+                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-teal-600 flex flex-col items-center justify-center text-white shadow-2xl hover:scale-105 transition-transform duration-300"
                 >
                   <Mic className="w-12 h-12 mb-4" />
                   <span className="text-xl font-bold tracking-wider">ACTIVAR</span>

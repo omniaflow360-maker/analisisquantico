@@ -22,7 +22,7 @@ export function VoiceAssistantModal({ isOpen, onClose }: VoiceAssistantModalProp
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-full max-w-xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col items-center"
+            className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col items-center min-h-[700px]"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
@@ -32,47 +32,47 @@ export function VoiceAssistantModal({ isOpen, onClose }: VoiceAssistantModalProp
               <X className="w-6 h-6" />
             </button>
             
-            <div className="w-full min-h-[400px] flex items-center justify-center p-8">
-              <iframe 
-                id="voice-assistant-iframe"
-                title="Voice Assistant"
-                className="w-full h-[300px] border-none"
-                srcDoc={`
-                  <!DOCTYPE html>
-                  <html>
-                    <head>
-                      <meta charset="UTF-8">
-                      <style>
-                        body { 
-                          margin: 0; 
-                          display: flex; 
-                          justify-content: center; 
-                          align-items: center; 
-                          height: 100vh; 
-                          background-color: transparent;
-                          font-family: sans-serif;
-                        }
-                        /* Ensure the widget container is visible and centered */
-                        #lc-widget-container {
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                          width: 100%;
-                        }
-                      </style>
-                    </head>
-                    <body>
-                      <div id="lc-widget-container">
+            <div className="w-full flex-1 flex items-center justify-center p-0">
+              <div id="lc-widget-popup-container" className="w-full h-full min-h-[600px] flex items-center justify-center">
+                <iframe 
+                  id="voice-assistant-iframe"
+                  title="Voice Assistant"
+                  className="w-full h-[600px] border-none"
+                  srcDoc={`
+                    <!DOCTYPE html>
+                    <html>
+                      <head>
+                        <meta charset="UTF-8">
+                        <style>
+                          body { 
+                            margin: 0; 
+                            display: flex; 
+                            justify-content: center; 
+                            align-items: center; 
+                            height: 100vh; 
+                            background-color: transparent;
+                            overflow: hidden;
+                          }
+                          /* Try to force center any inner widget if possible */
+                          .lc-widget-container {
+                            position: relative !important;
+                            bottom: auto !important;
+                            right: auto !important;
+                            margin: 0 auto !important;
+                          }
+                        </style>
+                      </head>
+                      <body>
                         <script 
                           src="https://widgets.leadconnectorhq.com/loader.js"  
                           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
-                          data-widget-id="69cee95a1707aa33df4f38dc"
+                          data-widget-id="69fce1c8ba1fce0b935856f4"
                         ></script>
-                      </div>
-                    </body>
-                  </html>
-                `}
-              />
+                      </body>
+                    </html>
+                  `}
+                />
+              </div>
             </div>
 
             <div className="pb-8 px-8 text-center">

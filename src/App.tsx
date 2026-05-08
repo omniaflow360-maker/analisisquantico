@@ -41,10 +41,12 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
         {/* Left Content */}
         <div className="lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
           <div className="mb-6">
-            {/* CAMBIO 1: "NUEVO" → "PROBADO" para no alimentar la incredulidad */}
-            <span className="text-sm md:text-base font-bold text-teal-400 tracking-[0.15em] uppercase bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20">
-              ✓ Probado con cientos de pacientes
-            </span>
+            {/* CAMBIO 1: "NUEVO" → "PROBADO" - Optimized for mobile to avoid breaking the container */}
+            <div className="flex">
+              <span className="inline-flex items-center text-[10px] xs:text-xs md:text-sm font-bold text-teal-400 tracking-wider uppercase bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20 leading-tight text-left">
+                ✓ Probado con cientos de pacientes
+              </span>
+            </div>
             <div className="h-[2px] w-24 bg-[#c5a08e]/30 mt-4"></div>
           </div>
 
@@ -56,7 +58,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
 
           {/* CAMBIO 2: Fix "oxímetro y frecuencia de pulso" → descripción real del QMRA */}
           <p className="text-xl md:text-2xl font-medium text-gray-300 mb-12 leading-relaxed">
-            <span className="text-teal-400 font-black">60 segundos</span> — solo la palma de tu mano sobre el sensor. <br className="hidden md:block" />
+            <span className="text-teal-400 font-black">60 segundos</span> — Se coloca un sensor en tu dedo, como si fuera oxímetro. <br className="hidden md:block" />
             Sin agujas. Sin ayunos. Sin dolor.
           </p>
 
@@ -125,6 +127,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-teal-100 selection:text-teal-900">
+      {/* Hidden SEO Keywords and Content */}
+      <div className="sr-only">
+        <h1>Jornada de Salud en Toluca - Análisis Biocuántico</h1>
+        <h2>Escáner de salud preventivo en Toluca de Lerdo, Baños Tivoli</h2>
+        <p>Chequeo médico preventivo sin agujas, sin dolor, resultados en 60 segundos. Diagnóstico de hígado graso, sistema cardiovascular y más.</p>
+        <p>Atención en Zinacantepec, Almoloya de Juárez, Metepec y alrededores de Toluca.</p>
+      </div>
+
       <ChatWidget />
 
       {/* Hero Section */}
@@ -190,7 +200,7 @@ export default function App() {
               {
                 icon: <ShieldCheck className="w-8 h-8 text-blue-600" />,
                 title: "No Invasivo",
-                desc: "Realiza el escaneo a través de la palma de tu mano en 60 segundos. Sin dolor, sin agujas y sin molestias."
+                desc: "Realiza el escaneo en 60 segundos con un sensor en tu dedo. Sin dolor, sin agujas y sin molestias."
               },
               {
                 icon: <CheckCircle className="w-8 h-8 text-indigo-600" />,
@@ -239,7 +249,7 @@ export default function App() {
             <motion.div {...fadeInUp} className="flex flex-col items-center gap-2">
               <Users className="w-8 h-8 text-teal-200" />
               <p className="text-4xl font-black">364+</p>
-              <p className="text-teal-100 font-medium font-black">Personas ya lo vivieron</p>
+              <p className="text-teal-100 font-medium font-black">Personas ya lo vivieron en Toluca</p>
             </motion.div>
             <motion.div {...fadeInUp} className="flex flex-col items-center gap-2">
               <Clock className="w-8 h-8 text-teal-200" />

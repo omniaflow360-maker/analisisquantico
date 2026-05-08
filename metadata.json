@@ -1,6 +1,6 @@
 {
-  "name": "Jornada Toluca - Escáner Biocuántico",
-  "description": "Landing page para el evento de análisis biocuántico en Zinacantepec, con reserva en línea y chat de soporte.",
+  "name": "Jornada Toluca - Análisis Biocuántico",
+  "description": "Jornada de salud preventiva en Toluca: Escáner Biocuántico en 60 segundos, sin agujas ni ayunos. Reserva tu lugar.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }

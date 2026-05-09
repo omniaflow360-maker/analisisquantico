@@ -110,10 +110,13 @@ export default function App() {
   const openVoiceModal = () => setIsVoiceModalOpen(true);
   const closeVoiceModal = () => setIsVoiceModalOpen(false);
 
-  // CAMBIO 12: Mensaje de WhatsApp orientado a agendamiento, no a "más información"
+  // WhatsApp configuration
+  const WHATSAPP_NUMBER = '525615716918';
+  const WHATSAPP_MESSAGE = encodeURIComponent('Hola, quiero agendar mi cita para el Escáner Biocuántico. Quiero saber si tengo hígado graso o desequilibrios óseos. 📅');
+
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/527293824651?text=Hola%2C%20quiero%20agendar%20mi%20cita%20para%20el%20Esc%C3%A1ner%20Biocuántico%20en%20Toluca%20%F0%9F%93%85',
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
       '_blank'
     );
   };
@@ -173,13 +176,13 @@ export default function App() {
 
             <div className="mt-16 flex justify-center">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(40, 167, 69, 0.3)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(37, 211, 102, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={openModal}
-                className="px-12 py-6 bg-[#28a745] hover:bg-[#218838] text-white text-2xl font-black rounded-full shadow-2xl transition-all flex items-center gap-4"
+                onClick={openWhatsApp}
+                className="px-12 py-6 bg-[#25D366] hover:bg-[#20ba5a] text-white text-2xl font-black rounded-full shadow-2xl transition-all flex items-center gap-4 border-2 border-white/20"
               >
-                <Calendar className="w-8 h-8" />
-                ¡Quiero Asistir al Escáner Biocuántico!
+                <MessageCircle className="w-8 h-8" />
+                ¡Agendar Cita por WhatsApp Ahora!
               </motion.button>
             </div>
           </div>
@@ -236,7 +239,7 @@ export default function App() {
               className="w-full sm:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
-              Agenda por WhatsApp
+              Agendar por WhatsApp
             </button>
           </motion.div>
         </div>
@@ -374,7 +377,7 @@ export default function App() {
               className="w-full sm:w-auto px-10 py-4 bg-[#25d366] hover:bg-[#20ba5a] text-white text-lg font-bold rounded-full shadow-xl transition-all flex items-center justify-center gap-3"
             >
               <MessageCircle className="w-5 h-5" />
-              ¡Quiero agendar por WhatsApp!
+              ¡Agendar Cita por WhatsApp!
             </button>
           </motion.div>
         </div>
@@ -477,7 +480,7 @@ export default function App() {
                   className="w-full py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-colors flex justify-center items-center gap-2"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  Agenda por WhatsApp
+                  Agendar por WhatsApp
                 </button>
               </div>
             </motion.div>

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Clock, MapPin, CheckCircle, ShieldCheck, Activity, Phone, MessageCircle, Mic, Users, TrendingUp } from 'lucide-react';
-import { BookingModal } from './components/BookingModal';
-import { ChatWidget } from './components/ChatWidget';
-import { VoiceAssistantModal } from './components/VoiceAssistantModal';
+
+const BookingModal = lazy(() => import('./components/BookingModal').then(module => ({ default: module.BookingModal })));
+const VoiceAssistantModal = lazy(() => import('./components/VoiceAssistantModal').then(module => ({ default: module.VoiceAssistantModal })));
+const ChatWidget = lazy(() => import('./components/ChatWidget').then(module => ({ default: module.ChatWidget })));
 
 function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string; heroImage?: string }) {
   const [imgError, setImgError] = useState(false);
@@ -11,8 +12,8 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       className={`relative w-full max-w-6xl mx-auto bg-[#050c18] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/5 ${className}`}
     >
@@ -24,6 +25,10 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
             alt="Analizador Cuántico Bío Eléctrico VitalHealth"
             className="w-full h-full object-cover object-right opacity-100"
             referrerPolicy="no-referrer"
+            width="1200"
+            height="600"
+            decoding="async"
+            fetchPriority="high"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -31,6 +36,10 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
             src={fallbackUrl}
             alt="Medical Tech Placeholder"
             className="w-full h-full object-cover opacity-10 grayscale"
+            width="1200"
+            height="600"
+            loading="lazy"
+            decoding="async"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#050c18]/80 via-[#050c18]/20 to-transparent"></div>
@@ -138,15 +147,20 @@ export default function App() {
         <p>Atención en Zinacantepec, Almoloya de Juárez, Metepec y alrededores de Toluca.</p>
       </div>
 
-      <ChatWidget />
+      <Suspense fallback={null}>
+        <ChatWidget />
+      </Suspense>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32 min-h-screen flex items-center bg-[#050c18]">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=40&w=1000"
             alt="Medical Tech Background"
             className="w-full h-full object-cover opacity-20"
+            width="1000"
+            height="600"
+            decoding="async"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050c18]/80 via-transparent to-[#050c18]"></div>
@@ -509,9 +523,13 @@ export default function App() {
       </footer>
 
       {isModalOpen && (
-        <BookingModal isOpen={isModalOpen} onClose={closeModal} />
+        <Suspense fallback={null}>
+          <BookingModal isOpen={isModalOpen} onClose={closeModal} />
+        </Suspense>
       )}
-      <VoiceAssistantModal isOpen={isVoiceModalOpen} onClose={closeVoiceModal} />
+      <Suspense fallback={null}>
+        <VoiceAssistantModal isOpen={isVoiceModalOpen} onClose={closeVoiceModal} />
+      </Suspense>
     </div>
   );
 }

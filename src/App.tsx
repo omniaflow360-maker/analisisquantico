@@ -83,7 +83,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
                 <p className="text-gray-900 font-black text-3xl md:text-4xl mb-1">¡50% de descuento</p>
                 <p className="text-gray-900 font-black text-2xl md:text-3xl mb-2">en tu análisis!</p>
                 <p className="text-gray-700 font-bold text-sm">$350 MXN <span className="line-through text-gray-400 font-normal">$700</span></p>
-                <p className="text-gray-500 text-[10px] font-bold mt-2">*Solo estos 3 días · Aplican términos y condiciones</p>
+                <p className="text-gray-500 text-[10px] font-bold mt-2">*Solo estos 4 días · Aplican términos y condiciones</p>
               </div>
             </div>
           </div>
@@ -415,7 +415,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-white">Fecha</h4>
-                    <p className="text-gray-400">Miércoles 13, Jueves 14 y Viernes 15 de Mayo, 2026</p>
+                    <p className="text-gray-400">18-19 y 22-23 de Mayo, 2026</p>
                   </div>
                 </div>
 
@@ -456,7 +456,7 @@ export default function App() {
             <motion.div {...fadeInUp} className="bg-white text-gray-900 p-8 rounded-2xl shadow-xl">
               <div className="text-center border-b border-gray-100 pb-6 mb-6">
                 {/* CAMBIO 10: "Oferta de Lanzamiento" → "Oferta Especial" */}
-                <span className="bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Oferta Especial · Solo 3 días</span>
+                <span className="bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Oferta Especial · Solo 4 días</span>
                 <h3 className="text-2xl font-bold mt-4">Análisis Completo</h3>
               </div>
 

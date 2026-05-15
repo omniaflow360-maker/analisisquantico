@@ -124,14 +124,11 @@ export default function App() {
   const WHATSAPP_MESSAGE = encodeURIComponent('Hola, quiero agendar mi cita para el Escáner Biocuántico. Quiero saber si tengo hígado graso o desequilibrios óseos. 📅');
 
   const openWhatsApp = () => {
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
-      '_blank'
-    );
-    if (typeof (window as any).fbq === 'function') {
-  (window as any).fbq('track', 'Contact');
-}
-  };
+  window.open(
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
+    '_blank'
+  );
+};
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },

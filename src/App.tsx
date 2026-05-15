@@ -98,7 +98,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
               </div>
               <p className="text-teal-400 font-bold text-lg mb-2">Vista Previa del Analizador</p>
               <p className="text-slate-400 text-sm max-w-xs">
-                Sube tu archivo <code className="bg-slate-800 px-2 py-1 rounded text-teal-300">analizador916.png</code> para verlo aquí.
+                Sube tu archivo <code className="bg-slate-800 px-2 py-1 rounded text-teal-300">analizador916.jpg</code> para verlo aquí.
               </p>
             </div>
           ) : null}
@@ -112,7 +112,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
-  const [heroImage] = useState<string>('analizador916.png');
+  const [heroImage] = useState<string>('analizador916.jpg');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -124,13 +124,13 @@ export default function App() {
   const WHATSAPP_MESSAGE = encodeURIComponent('Hola, quiero agendar mi cita para el Escáner Biocuántico. Quiero saber si tengo hígado graso o desequilibrios óseos. 📅');
 
   const openWhatsApp = () => {
-    if (typeof (window as any).fbq === 'function') {
-      (window as any).fbq('track', 'Contact');
-    }
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
       '_blank'
     );
+    if (typeof (window as any).fbq === 'function') {
+  (window as any).fbq('track', 'Contact');
+}
   };
 
   const fadeInUp = {
@@ -161,9 +161,9 @@ export default function App() {
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=40&w=1000"
             alt="Medical Tech Background"
             className="w-full h-full object-cover opacity-20"
+            fetchPriority="high"
             width="1000"
             height="600"
-            fetchPriority="high"
             decoding="async"
             referrerPolicy="no-referrer"
           />

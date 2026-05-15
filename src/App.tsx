@@ -158,13 +158,14 @@ export default function App() {
       <section className="relative overflow-hidden py-20 lg:py-32 min-h-screen flex items-center bg-[#050c18]">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=40&w=1000"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=20&w=800"
             alt="Medical Tech Background"
             className="w-full h-full object-cover opacity-20"
-            fetchPriority="high"
-            width="1000"
-            height="600"
+            width="800"
+            height="480"
             decoding="async"
+            fetchPriority="low"
+            loading="lazy"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050c18]/80 via-transparent to-[#050c18]"></div>

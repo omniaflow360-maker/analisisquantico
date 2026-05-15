@@ -121,7 +121,7 @@ export default function App() {
 
   // WhatsApp configuration
   const WHATSAPP_NUMBER = '525615716918';
-  const WHATSAPP_MESSAGE = encodeURIComponent('Hola, quiero agendar mi cita para el Escáner Biocuántico. Quiero saber si tengo hígado graso o desequilibrios óseos. 📅');
+  const WHATSAPP_MESSAGE = encodeURIComponent('Hola, vi el anuncio del análisis biocuántico en Toluca. Me gustaría información. 👋');
 
   const openWhatsApp = () => {
   window.open(

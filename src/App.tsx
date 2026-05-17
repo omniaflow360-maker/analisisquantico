@@ -64,11 +64,7 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
             BIOCUÁNTICO
           </h2>
 
-          {/* CAMBIO 2: Fix "oxímetro y frecuencia de pulso" → descripción real del QMRA */}
-          <p className="text-xl md:text-2xl font-medium text-gray-300 mb-12 leading-relaxed">
-            <span className="text-teal-400 font-black">60 segundos</span> — Se coloca un sensor en tu dedo, como si fuera oxímetro. <br className="hidden md:block" />
-            Sin agujas. Sin ayunos. Sin dolor.
-          </p>
+          {/* CAMBIO 2: Remove old description as per user request */}
 
           {/* Promotion Card */}
           <div className="relative group max-w-sm">
@@ -176,16 +172,17 @@ export default function App() {
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               En <strong className="text-teal-400">60 segundos</strong> descubres si tienes{' '}
               <strong className="text-white">hígado graso, proteína en orina o desequilibrios óseos</strong>{' '}
-              — sin agujas, sin ayunos.{' '}
-              <strong className="text-teal-400">Solo $350 MXN</strong>{' '}
-              <span className="line-through text-gray-500">$700</span>.
+              — sin agujas, sin ayunos.
             </p>
           </div>
 
           <div className="relative">
             <QuantumAnalyzerCard heroImage={heroImage} />
 
-            <div className="mt-16 flex justify-center">
+            <div className="mt-16 flex flex-col items-center gap-6">
+              <p className="text-teal-400 font-bold text-lg text-center">
+                ⏰ La jornada inicia mañana 18 de mayo · Lugares limitados
+              </p>
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(37, 211, 102, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
@@ -290,7 +287,7 @@ export default function App() {
               ✓ Probado en jornadas de salud a nivel nacional
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-              ¿Quieres Preguntar algo sobre el <br className="hidden md:block" /> ESCÁNER BIOCUÁNTICO?
+              ¿Quieres preguntar algo sobre el <br className="hidden md:block" /> ESCÁNER BIOCUÁNTICO?
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Habla directamente con nuestro <span className="font-bold text-slate-800">Asistente Virtual</span>. Experto en

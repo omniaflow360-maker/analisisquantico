@@ -2,12 +2,9 @@ import { MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export function ChatWidget() {
-  const WHATSAPP_NUMBER = '525615716918';
-  const WHATSAPP_MESSAGE = encodeURIComponent('Hola, quiero agendar mi cita para el Escáner Biocuántico. Quiero saber si tengo hígado graso o desequilibrios óseos. 📅');
-
   const openWhatsApp = () => {
     window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
+      'https://api.whatsapp.com/send/?phone=525615716918&text=Hola%2C+vi+informaci%C3%B3n+sobre+el+Esc%C3%A1ner+Biocu%C3%A1ntico.+Me+gustar%C3%ADa+saber+m%C3%A1s.&type=phone_number&app_absent=0',
       '_blank'
     );
   };

@@ -16,28 +16,11 @@
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=40&w=1000" referrerpolicy="no-referrer" fetchpriority="high" />
 
     
-    <!-- Tracking Scripts Deferred -->
+    <!-- Tracking Scripts Staggered to reduce TBT -->
     <script>
       window.addEventListener('load', function() {
-        // Defer GTM
+        // Step 1: Meta Pixel (Very heavy) - 3.5s
         setTimeout(function() {
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-T3ZP3CMS');
-
-          // Defer Google Tag
-          var gtagScript = document.createElement('script');
-          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-JFV4KM581L";
-          gtagScript.async = true;
-          document.head.appendChild(gtagScript);
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-JFV4KM581L');
-
-          // Defer Meta Pixel
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -48,7 +31,28 @@
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '949296438012896');
           fbq('track', 'PageView');
-        }, 3000); // Wait 3 seconds to prioritize hero rendering
+        }, 3500);
+
+        // Step 2: Google Tag Manager - 5.5s
+        setTimeout(function() {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-T3ZP3CMS');
+        }, 5500);
+
+        // Step 3: Global Site Tag (gtag.js) - 7.5s
+        setTimeout(function() {
+          var gtagScript = document.createElement('script');
+          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-JFV4KM581L";
+          gtagScript.async = true;
+          document.head.appendChild(gtagScript);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-JFV4KM581L');
+        }, 7500);
       });
     </script>
   </head>

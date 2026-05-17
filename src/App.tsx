@@ -119,22 +119,18 @@ export default function App() {
   const openVoiceModal = () => setIsVoiceModalOpen(true);
   const closeVoiceModal = () => setIsVoiceModalOpen(false);
 
-  // WhatsApp configuration
-  const WHATSAPP_NUMBER = '525615716918';
-  const WHATSAPP_MESSAGE = encodeURIComponent('Hola, vi el anuncio del análisis biocuántico en Toluca. Me gustaría información. 👋');
-
   const openWhatsApp = () => {
-  window.open(
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`,
-    '_blank'
-  );
-};
+    window.open(
+      'https://api.whatsapp.com/send/?phone=525615716918&text=Hola%2C+vi+informaci%C3%B3n+sobre+el+Esc%C3%A1ner+Biocu%C3%A1ntico.+Me+gustar%C3%ADa+saber+m%C3%A1s.&type=phone_number&app_absent=0',
+      '_blank'
+    );
+  };
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, amount: 0.3 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    viewport: { once: true },
+    transition: { duration: 0.5, ease: "easeOut" }
   };
 
   return (

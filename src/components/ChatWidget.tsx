@@ -20,7 +20,7 @@ export function ChatWidget() {
       aria-label="Contactar por WhatsApp"
     >
       <div className="absolute right-full mr-4 bg-white text-gray-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block">
-        ¡Agenda tu cita aquí! 📅
+        ¡Me interesa — escribir por WhatsApp!
       </div>
       <MessageCircle className="w-8 h-8" />
     </motion.button>

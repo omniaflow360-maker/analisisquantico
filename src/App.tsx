@@ -60,9 +60,8 @@ function QuantumAnalyzerCard({ className = "", heroImage }: { className?: string
           </div>
 
           <h2 className="text-4xl md:text-6xl font-black text-white leading-[1] mb-8 tracking-tight uppercase">
-            ANALIZADOR <br />
-            CUÁNTICO <br />
-            BÍO ELÉCTRICO
+            ESCÁNER <br />
+            BIOCUÁNTICO
           </h2>
 
           {/* CAMBIO 2: Fix "oxímetro y frecuencia de pulso" → descripción real del QMRA */}
@@ -191,10 +190,10 @@ export default function App() {
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(37, 211, 102, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={openWhatsApp}
-                className="px-12 py-6 bg-[#25D366] hover:bg-[#20ba5a] text-white text-2xl font-black rounded-full shadow-2xl transition-all flex items-center gap-4 border-2 border-white/20"
+                className="px-8 py-4 sm:px-12 sm:py-6 bg-[#25D366] hover:bg-[#20ba5a] text-white text-lg sm:text-2xl font-black rounded-full shadow-2xl transition-all flex items-center gap-4 border-2 border-white/20"
               >
-                <MessageCircle className="w-8 h-8" />
-                ¡Agendar Cita por WhatsApp Ahora!
+                <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+                ¡Me interesa — escribir por WhatsApp!
               </motion.button>
             </div>
           </div>
@@ -220,7 +219,7 @@ export default function App() {
               {
                 icon: <CheckCircle className="w-8 h-8 text-indigo-600" />,
                 title: "Científicamente Basado",
-                desc: "Utiliza técnicas de análisis de biofrecuencias y resonancia electromagnética utilizadas en clínicas de medicina preventiva a nivel mundial."
+                desc: "Tecnología usada en clínicas de medicina preventiva en 14 países. Un sensor en tu dedo revela lo que normalmente solo un laboratorio detecta."
               }
             ].map((feature, idx) => (
               <motion.div
@@ -240,18 +239,11 @@ export default function App() {
 
           <motion.div {...fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={openModal}
-              className="w-full sm:w-auto px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white text-lg font-semibold rounded-full shadow-lg transition-all flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-5 h-5" />
-              Agenda Ahora
-            </button>
-            <button
               onClick={openWhatsApp}
               className="w-full sm:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
-              Agendar por WhatsApp
+              ¡Me interesa — escribir por WhatsApp!
             </button>
           </motion.div>
         </div>
@@ -295,10 +287,10 @@ export default function App() {
             {/* CAMBIO 7: "Nueva Tecnología" → "Tecnología con Aval Internacional" */}
             <span className="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-6 border border-blue-100">
               <Activity className="w-4 h-4" />
-              Tecnología con Aval Internacional
+              ✓ Probado en jornadas de salud a nivel nacional
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-              ¿Tienes dudas sobre el <br className="hidden md:block" /> Análisis Cuántico?
+              ¿Quieres Preguntar algo sobre el <br className="hidden md:block" /> ESCÁNER BIOCUÁNTICO?
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Habla directamente con nuestro <span className="font-bold text-slate-800">Asistente Virtual</span>. Experto en
@@ -370,11 +362,7 @@ export default function App() {
             </div>
           </motion.div>
 
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <p className="text-slate-400 text-sm font-medium">
-              Powered by LeadConnector AI & omniaflow.pro Technology
-            </p>
-          </motion.div>
+
 
           <motion.div {...fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
@@ -389,7 +377,7 @@ export default function App() {
               className="w-full sm:w-auto px-10 py-4 bg-[#25d366] hover:bg-[#20ba5a] text-white text-lg font-bold rounded-full shadow-xl transition-all flex items-center justify-center gap-3"
             >
               <MessageCircle className="w-5 h-5" />
-              ¡Agendar Cita por WhatsApp!
+              ¡Me interesa — escribir por WhatsApp!
             </button>
           </motion.div>
         </div>
@@ -492,7 +480,7 @@ export default function App() {
                   className="w-full py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-colors flex justify-center items-center gap-2"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  Agendar por WhatsApp
+                  ¡Me interesa — escribir por WhatsApp!
                 </button>
               </div>
             </motion.div>
